@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
 })
 export class RestService {
-dir
+
     public API = 'http://192.168.43.100:8080';
 
     constructor(public http: HttpClient) {
