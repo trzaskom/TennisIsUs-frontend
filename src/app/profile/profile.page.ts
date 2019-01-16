@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RestService} from '../rest.service';
+import {RestService} from '../../client/api/rest.service';
 
 @Component({
     selector: 'app-profile',
@@ -8,15 +8,15 @@ import {RestService} from '../rest.service';
 })
 export class ProfilePage implements OnInit {
 
-    private users: Array<any>;
+/*    private users: Array<any>;
 
     constructor(public restService: RestService) {
-    }
+    }*/
 
     ngOnInit() {
-        this.restService.getUsers().subscribe(users => {
+/*        this.restService.getUsers().subscribe(users => {
             this.users = users;
-        });
+        });*/
     }
 
 }
