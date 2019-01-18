@@ -10,7 +10,8 @@ const routes: Routes = [
     {path: 'weather', loadChildren: './weather/weather.module#WeatherPageModule', canActivate: [AuthGuard]},
     {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule', canActivate: [AuthGuard]},
     {path: 'signup', loadChildren: './signup/signup.module#SignupPageModule'},
-    {path: 'login', loadChildren: './login/login.module#LoginPageModule'}
+    {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
+  { path: 'rating', loadChildren: './rating/rating.module#RatingPageModule' }
 ];
 
 @NgModule({
