@@ -15,10 +15,18 @@ export class AuthService {
 
     private authUser = new ReplaySubject<any>(1);
     public authUserObservable = this.authUser.asObservable();
+    loggedUser;
 
     constructor(private readonly httpClient: HttpClient,
                 private readonly navCtrl: NavController,
                 private readonly jwtHelper: JwtHelperService) {
+    }
+
+    getCurrentUser() {
+        return this.httpClient.get(`${environment.serverURL}/currentUser`)
+            .pipe(
+                tap(data => this.loggedUser = data)
+            );
     }
 
     hasAccess(): Promise<boolean> {
