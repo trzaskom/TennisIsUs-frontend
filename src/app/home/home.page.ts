@@ -30,10 +30,6 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
-        this.httpClient.get(`${environment.serverURL}/secret`, {responseType: 'text'}).subscribe(
-            text => this.message = text,
-            err => console.log(err)
-        );
     }
 
     logout() {
