@@ -5,9 +5,9 @@ import {AuthService} from '../../client/auth/auth.service';
 import {finalize} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+    selector: 'app-signup',
+    templateUrl: './signup.page.html',
+    styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage {
 
@@ -21,6 +21,7 @@ export class SignupPage {
     }
 
     async signup(value: any) {
+        value.rating = 0;
         const loading = await this.loadingCtrl.create({
             spinner: 'bubbles',
             message: 'Signing up ...'
@@ -57,7 +58,7 @@ export class SignupPage {
             });
 
             await toast.present();
-            this.navCtrl.navigateRoot(['home'], true, {replaceUrl: true});
+            this.navCtrl.navigateRoot(['rating'], true, {replaceUrl: true});
         } else {
             const toast = await this.toastCtrl.create({
                 message: 'Username already registered',
