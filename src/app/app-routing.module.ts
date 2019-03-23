@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {AuthGuard} from '../client/auth/auth.guard';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
     {path: '', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuard]},
@@ -11,7 +11,7 @@ const routes: Routes = [
     {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule', canActivate: [AuthGuard]},
     {path: 'signup', loadChildren: './signup/signup.module#SignupPageModule'},
     {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
-  { path: 'rating', loadChildren: './rating/rating.module#RatingPageModule' }
+  { path: 'rating', loadChildren: './rating/rating.module#RatingPageModule', canActivate: [AuthGuard]}
 ];
 
 @NgModule({
