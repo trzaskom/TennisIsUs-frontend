@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {LoadingController, NavController, ToastController} from '@ionic/angular';
-import {AuthService} from '../../client/auth/auth.service';
+import {AuthService} from '../auth/auth.service';
 import {finalize} from 'rxjs/operators';
 
 @Component({
