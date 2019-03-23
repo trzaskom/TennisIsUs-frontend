@@ -6,11 +6,11 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-list-header>{{loggedUser.name}} {{loggedUser.surname}}</ion-list-header>
-        <ion-item><ion-label>Email: </ion-label>{{loggedUser.email}}</ion-item>
-        <ion-item><ion-label>Gender: </ion-label>{{loggedUser.gender}}</ion-item>
-        <ion-item><ion-label>Age: </ion-label>{{loggedUser.age}}</ion-item>
-        <ion-item><ion-label>Rating: </ion-label>{{loggedUser.rating}}</ion-item>
+        <ion-list-header>{{loggedUser?.name}} {{loggedUser?.surname}}</ion-list-header>
+        <ion-item><ion-label>Email: </ion-label>{{loggedUser?.email}}</ion-item>
+        <ion-item><ion-label>Gender: </ion-label>{{loggedUser?.gender}}</ion-item>
+        <ion-item><ion-label>Age: </ion-label>{{loggedUser?.age}}</ion-item>
+        <ion-item><ion-label>Rating: </ion-label>{{loggedUser?.rating}}</ion-item>
         <ion-button (click)="updateRating()">Edit rating</ion-button>
     </ion-list>
 </ion-content>

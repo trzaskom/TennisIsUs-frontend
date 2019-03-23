@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {RestService} from '../../client/api/rest.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NavController} from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
-import {AuthService} from '../../client/auth/auth.service';
+import {AuthService} from '../auth/auth.service';
 import {environment} from '../../environments/environment';
 
 @Component({
