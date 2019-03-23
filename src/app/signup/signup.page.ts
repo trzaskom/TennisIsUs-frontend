@@ -1,8 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
 import {NgModel} from '@angular/forms';
 import {LoadingController, NavController, ToastController} from '@ionic/angular';
-import {AuthService} from '../../client/auth/auth.service';
+import {AuthService} from '../auth/auth.service';
 import {finalize} from 'rxjs/operators';
+import {GeolocationService} from '../../client/api/geolocation/geolocation.service';
 
 @Component({
     selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupPage {
     constructor(private readonly navCtrl: NavController,
                 private readonly authService: AuthService,
                 private readonly loadingCtrl: LoadingController,
-                private readonly toastCtrl: ToastController) {
+                private readonly toastCtrl: ToastController,
+                private readonly geolocationService: GeolocationService) {
     }
 
     async signup(value: any) {
@@ -58,6 +60,7 @@ export class SignupPage {
             });
 
             await toast.present();
+            this.postInitialLocation();
             this.navCtrl.navigateRoot(['rating'], true, {replaceUrl: true});
         } else {
             const toast = await this.toastCtrl.create({
@@ -72,5 +75,10 @@ export class SignupPage {
         }
     }
 
+    postInitialLocation() {
+        navigator.geolocation.getCurrentPosition((location) => {
+            this.geolocationService.postInitialGeolocation(location);
+        });
+    }
 
 }
