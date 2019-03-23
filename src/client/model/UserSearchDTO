@@ -1,0 +1,10 @@
+export interface UserSearchDTO {
+    id: number;
+    age: number;
+    gender: string;
+    name: string;
+    rating: number;
+    username: string;
+    surname: string;
+    distanceFromCurrentUser: number;
+}
