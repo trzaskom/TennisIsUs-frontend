@@ -10,11 +10,71 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-    Welcome <strong>{{user}}</strong>
+    <div *ngIf="searchListView; then foundUsers else searchPanel"></div>
+    <ng-template #searchPanel>
+        <ion-list>
 
-    <p>
-        Choose rating range as well as diameter of area for hitting-partner search
-    </p>
+            <ion-item>
+                <ion-label>Rating</ion-label>
+                <br>
+                <ion-badge color="primary">{{this.minRating}}</ion-badge>
+                <ion-range dualKnobs="true" [min]="initialMin" [max]="initialMax" step="1" [(ngModel)]="searchRating"
+                           (ionChange)="setDualBadge(searchRating)">
+                </ion-range>
+                <ion-badge color="primary">{{this.maxRating}}</ion-badge>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Distance limit</ion-label>
+                <br>
+                <ion-input type="number" placeholder="Input distance in meters" [(ngModel)]="maxRange" color="primary">
+                </ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <ion-button (click)="searchForPlayers()">
+            <ion-ripple-effect></ion-ripple-effect>
+            Search
+        </ion-button>
+    </ng-template>
+
+    <ng-template #foundUsers>
+        <div *ngIf="searchDetails; then playerDetails else searchListResult"></div>
+        <ng-template #searchListResult>
+            <ion-list-header>Found players</ion-list-header>
+            <ion-card (click)="foundPlayerDetails(user)" *ngFor="let user of searchService.searchedPlayers">
+                <ion-card-header>{{user.name}} {{user.surname}}</ion-card-header>
+                <ion-card-title>Distance: {{user.distanceFromCurrentUser}}</ion-card-title>
+                <ion-card-subtitle>Rating: {{user.rating}}</ion-card-subtitle>
+                <ion-card-content>test test test test</ion-card-content>
+            </ion-card>
+            <ion-button (click)="backToSearchPanel()">Search again</ion-button>
+        </ng-template>
+        <ng-template #playerDetails>
+            <ion-button (click)="goBackToResultList()">
+                <ion-icon name="arrow-round-back" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-segment (ionChange)="segmentChanged($event)">
+                <ion-segment-button value="details">
+                    <ion-label>Details</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="map">
+                    <ion-label>Map</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+            <div [ngSwitch]="detailsSwitch">
+                <ion-card *ngSwitchCase="'details'" ngSelected="selected">
+                    <ion-card-header>{{user.name}} {{user.surname}}</ion-card-header>
+                    <ion-card-title>Distance: {{user.distanceFromCurrentUser}}</ion-card-title>
+                    <ion-card-subtitle>Rating: {{user.rating}}</ion-card-subtitle>
+                    <ion-card-content>test test test test</ion-card-content>
+                </ion-card>
+                <div *ngSwitchCase="'map'" ><h2>MAPAAA</h2></div>
+            </div>
+        </ng-template>
+    </ng-template>
+
+
 </ion-content>
