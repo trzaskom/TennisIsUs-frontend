@@ -54,10 +54,6 @@ export class HomePage {
     }
 
 
-    logout() {
-        this.authService.logout();
-    }
-
     setDualBadge(search_rating) {
         this.minRating = search_rating.lower / 10;
         this.maxRating = search_rating.upper / 10;

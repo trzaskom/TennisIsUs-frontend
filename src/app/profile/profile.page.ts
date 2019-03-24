@@ -28,5 +28,8 @@ export class ProfilePage {
         this.navCtrl.navigateRoot(['rating'], true, {replaceUrl: true});
     }
 
+    logout() {
+        this.authService.logout();
+    }
 
 }
