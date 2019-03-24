@@ -5,6 +5,7 @@ import {NavController} from '@ionic/angular';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
+import {User} from '../../client/model/User';
 
 @Injectable({
     providedIn: 'root'
@@ -15,17 +16,21 @@ export class AuthService {
 
     private authUser = new ReplaySubject<any>(1);
     public authUserObservable = this.authUser.asObservable();
-    loggedUser;
+    loggedUser: User;
 
     constructor(private readonly httpClient: HttpClient,
                 private readonly navCtrl: NavController,
                 private readonly jwtHelper: JwtHelperService) {
     }
 
+    public whoAmI(): User {
+        return this.loggedUser;
+    }
+
     getCurrentUser() {
         return this.httpClient.get(`${environment.serverURL}/currentUser`)
             .pipe(
-                tap(data => this.loggedUser = data)
+                tap(data => this.loggedUser = <User>data)
             );
     }
 
