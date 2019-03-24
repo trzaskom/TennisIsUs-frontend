@@ -31,28 +31,27 @@ export class CourtsPage implements AfterViewInit {
         navigator.geolocation.getCurrentPosition((location) => {
             console.log(location);
             map = new google.maps.Map(this.mapElement.nativeElement, {
-                center: {lat: 52.2193803, lng: 21.0049868},
+                center: {lat: location.coords.latitude, lng: location.coords.longitude},
                 zoom: 15,
             });
-            this.addMarker(map);
+            this.addMarker(location.coords.latitude, location.coords.longitude);
+            this.addMarker(52.217356, 21.010136);
         });
     }
 
-    addMarker(mapa: any) {
+    addMarker(latitude, longitude) {
 
-        const image = '/bluedot.png';
         const marker = new google.maps.Marker({
-            map: mapa,
+            map: map,
             animation: google.maps.Animation.DROP,
-            position: {lat: 52.2193803, lng: 21.0049868},
-            content: 'YOU ARE HERE'
-        });
-        const marker2 = new google.maps.Marker({
-            map: mapa,
-            animation: google.maps.Animation.DROP,
-            position: {lat: 52.217356, lng: 21.010136}
+            position: {lat: latitude, lng: longitude}
         });
 
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow = new google.maps.InfoWindow();
+            infoWindow.setContent('test');
+            infoWindow.open(map, this);
+        });
     }
 
     /*            infoWindow = new google.maps.InfoWindow();
