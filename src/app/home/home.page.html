@@ -1,14 +1,5 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Home
-        </ion-title>
-        <ion-buttons slot="primary">
-            <ion-button (click)="logout()">
-                <ion-icon name="exit" slot="icon-only"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+    <ion-toolbar></ion-toolbar>
 </ion-header>
 <ion-content padding>
     <div *ngIf="searchListView; then foundUsers else searchPanel"></div>
@@ -53,9 +44,9 @@
             <ion-button (click)="backToSearchPanel()">Search again</ion-button>
         </ng-template>
         <ng-template #playerDetails>
-            <ion-button (click)="goBackToResultList()">
-                <ion-icon name="arrow-round-back" slot="icon-only"></ion-icon>
-            </ion-button>
+            <!--            <ion-button (click)="goBackToResultList()">
+                            <ion-icon name="arrow-round-back" slot="icon-only"></ion-icon>
+                        </ion-button>-->
             <ion-segment (ionChange)="segmentChanged($event)">
                 <ion-segment-button value="details">
                     <ion-label>Details</ion-label>
@@ -66,12 +57,24 @@
             </ion-segment>
             <div [ngSwitch]="detailsSwitch">
                 <ion-card *ngSwitchCase="'details'" ngSelected="selected">
-                    <ion-card-header>{{user.name}} {{user.surname}}</ion-card-header>
-                    <ion-card-title>Distance: {{user.distanceFromCurrentUser}}</ion-card-title>
-                    <ion-card-subtitle>Rating: {{user.rating}}</ion-card-subtitle>
-                    <ion-card-content>test test test test</ion-card-content>
+
+                    <img style="height:60%;" src="assets/icon/federer.jpg"/>
+
+                    <ion-card-content>
+                        <ion-card-title>{{detailedUser.name}} {{detailedUser.surname}}</ion-card-title>
+                        <p>
+                            I like to play tennis sometimes...
+                        </p>
+                    </ion-card-content>
+
+                    <ion-item>
+                        <ion-icon name='tennisball' item-start style="color: #2894d0"></ion-icon>
+                        Rating
+                        <ion-badge style="position: relative; left: 158px;">{{detailedUser.rating}}</ion-badge>
+                    </ion-item>
+
                 </ion-card>
-                <div *ngSwitchCase="'map'" ><h2>MAPAAA</h2></div>
+                <div *ngSwitchCase="'map'"><h2>MAPAAA</h2></div>
             </div>
         </ng-template>
     </ng-template>
