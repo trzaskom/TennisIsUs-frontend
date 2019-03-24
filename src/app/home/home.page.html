@@ -55,6 +55,7 @@
                     <ion-label>Map</ion-label>
                 </ion-segment-button>
             </ion-segment>
+            <div #map id="map" style="height:100%"></div>
             <div [ngSwitch]="detailsSwitch">
                 <ion-card *ngSwitchCase="'details'" ngSelected="selected">
 
@@ -72,9 +73,8 @@
                         Rating
                         <ion-badge style="position: relative; left: 158px;">{{detailedUser.rating}}</ion-badge>
                     </ion-item>
-
+                    <ion-button>Invite</ion-button>
                 </ion-card>
-                <div *ngSwitchCase="'map'"><h2>MAPAAA</h2></div>
             </div>
         </ng-template>
     </ng-template>
