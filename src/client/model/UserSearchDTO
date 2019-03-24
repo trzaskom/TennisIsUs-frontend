@@ -7,4 +7,6 @@ export interface UserSearchDTO {
     username: string;
     surname: string;
     distanceFromCurrentUser: number;
+    searchedLatitude: number;
+    searchedLongitude: number;
 }
