@@ -9,6 +9,9 @@ import {User} from '../../client/model/User';
 declare var google;
 let map: any;
 let infoWindow: any;
+let directionsService: any;
+let directionsDisplay: any;
+let bounds: any;
 
 @Component({
     selector: 'app-home',
@@ -56,25 +59,53 @@ export class HomePage {
     }
 
     initMap() {
+        const currentLocIconURL = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
+        const searchedPlayerIconURL = 'http://maps.google.com/mapfiles/ms/micons/golfer.png';
         navigator.geolocation.getCurrentPosition((location) => {
             console.log(location);
             map = new google.maps.Map(this.mapElement.nativeElement, {
                 center: {lat: location.coords.latitude, lng: location.coords.longitude},
                 zoom: 15,
             });
-            this.addMarker(location.coords.latitude, location.coords.longitude, 'Your current position');
+            this.addMarker(location.coords.latitude, location.coords.longitude, 'Your current position', currentLocIconURL);
             this.addMarker(this.detailedUser.searchedLatitude, this.detailedUser.searchedLongitude,
-                this.detailedUser.name + ' ' + this.detailedUser.surname);
+                this.detailedUser.name + ' ' + this.detailedUser.surname, searchedPlayerIconURL);
+            directionsService = new google.maps.DirectionsService;
+            directionsDisplay = new google.maps.DirectionsRenderer({
+                suppressMarkers: true
+            });
+            directionsDisplay.setMap(map);
+            directionsService.route({
+                origin: {lat: location.coords.latitude, lng: location.coords.longitude},
+                destination: {lat: this.detailedUser.searchedLatitude, lng: this.detailedUser.searchedLongitude},
+                travelMode: 'DRIVING'
+            }, (response, status) => {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+
             this.mapElement.nativeElement.hidden = true;
         });
     }
 
-    addMarker(latitude, longitude, content) {
+
+    addMarker(latitude, longitude, content, iconURL) {
 
         console.log(latitude);
         console.log(longitude);
         const marker = new google.maps.Marker({
             map: map,
+            icon: new google.maps.MarkerImage(
+                // URL
+                iconURL,
+                // (width,height)
+                new google.maps.Size(44, 32),
+                // The origin point (x,y)
+                new google.maps.Point(0, 0),
+                // The anchor point (x,y)
+                new google.maps.Point(22, 32)
+            ),
             animation: google.maps.Animation.DROP,
             position: {lat: latitude, lng: longitude}
         });
