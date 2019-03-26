@@ -66,14 +66,16 @@ export class HomePage {
             console.log(location);
             map = new google.maps.Map(this.mapElement.nativeElement, {
                 center: {lat: location.coords.latitude, lng: location.coords.longitude},
-                zoom: 9,
             });
-
-            bounds = new google.maps.LatLngBounds();
 
             this.addMarker(location.coords.latitude, location.coords.longitude, 'Your current position', currentLocIconURL);
             this.addMarker(this.detailedUser.searchedLatitude, this.detailedUser.searchedLongitude,
                 this.detailedUser.name + ' ' + this.detailedUser.surname, searchedPlayerIconURL);
+
+            bounds = new google.maps.LatLngBounds();
+            bounds.extend(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
+            bounds.extend(new google.maps.LatLng(this.detailedUser.searchedLatitude, this.detailedUser.searchedLongitude));
+
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer({
                 suppressMarkers: true
@@ -96,8 +98,6 @@ export class HomePage {
 
     addMarker(latitude, longitude, content, iconURL) {
 
-        console.log(latitude);
-        console.log(longitude);
         const marker = new google.maps.Marker({
             map: map,
             icon: new google.maps.MarkerImage(
@@ -113,25 +113,6 @@ export class HomePage {
             animation: google.maps.Animation.DROP,
             position: {lat: latitude, lng: longitude}
         });
-        // console.log(bounds.toString());
-        bounds.extend(marker.position);
-/*        map.fitBounds(bounds);
-        console.log(map.getZoom());
-        map.setZoom(map.getZoom() > 18 ? 18 : map.getZoom());
-        map.setZoom(map.getZoom() < 6 ? 6 : map.getZoom());
-        console.log(bounds.toString());*/
-
-        google.maps.event.addListener(map, 'zoom_changed', function() {
-                google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
-                    if (this.getZoom() > 18 && this.initialZoom === true) {
-                        // Change max/min zoom here
-                        this.setZoom(18);
-                        this.initialZoom = false;
-                    }
-                });
-        });
-        map.initialZoom = true;
-        map.fitBounds(bounds);
 
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow = new google.maps.InfoWindow();
@@ -171,9 +152,9 @@ export class HomePage {
         this.detailsSwitch = ev.detail.value;
         if (this.detailsSwitch === 'map') {
             this.mapElement.nativeElement.hidden = false;
+            map.fitBounds(bounds);
         } else {
             this.mapElement.nativeElement.hidden = true;
-
         }
     }
 
