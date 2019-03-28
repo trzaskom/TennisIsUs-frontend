@@ -1,41 +1,51 @@
 <ion-content class="background">
-    <ion-card>
-        <ion-card-header class="ion-text-center">
-            <img src="assets/newLogo.png"/>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-list no-line>
-                <form #form="ngForm" (ngSubmit)="login(form.value)" novalidate>
-                    <ion-item class="item-input-field">
-                        <ion-input type="text" name="username" placeholder="Username" ngModel required
-                                   #username="ngModel"
-                                   [class.invalid]="username.errors && username.dirty"></ion-input>
-                    </ion-item>
-                    <ion-item class="error-message" *ngIf="username.errors?.required && username.dirty">
-                        <ion-label color="danger">
-                            Username is required
-                        </ion-label>
-                    </ion-item>
-                    <ion-item class="item-input-field">
-                        <ion-input type="password" name="password" placeholder="Password" ngModel required
-                                   #password="ngModel"
-                                   [class.invalid]="password.errors && password.dirty">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <ion-card-header class="ion-text-center">
+                        <img src="assets/newLogo.png"/>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-list no-line>
+                            <form #form="ngForm" (ngSubmit)="login(form.value)" novalidate>
+                                <ion-item class="item-input-field">
+                                    <ion-input type="text" name="username" placeholder="Username" ngModel required
+                                               #username="ngModel"
+                                               [class.invalid]="username.errors && username.dirty"></ion-input>
+                                </ion-item>
+                                <ion-item class="error-message" *ngIf="username.errors?.required && username.dirty">
+                                    <ion-label color="danger">
+                                        Username is required
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item class="item-input-field">
+                                    <ion-input type="password" name="password" placeholder="Password" ngModel required
+                                               #password="ngModel"
+                                               [class.invalid]="password.errors && password.dirty">
 
-                        </ion-input>
-                    </ion-item>
-                    <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
-                        <ion-label color="danger">
-                            Password is required
-                        </ion-label>
-                    </ion-item>
-                    <ion-button expand="block" fill="outline" shape="round" color="light" type="submit">Login
-                    </ion-button>
-                    <p class="ion-text-center">OR</p>
-                    <ion-button expand="full" fill="clear" color="light" type="button" (click)="signup()">DON'T HAVE AN
-                        ACCOUNT? SIGN UP
-                    </ion-button>
-                </form>
-            </ion-list>
-        </ion-card-content>
-    </ion-card>
+                                    </ion-input>
+                                </ion-item>
+                                <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
+                                    <ion-label color="danger">
+                                        Password is required
+                                    </ion-label>
+                                </ion-item>
+                                <ion-button expand="block" fill="outline" shape="round" color="light" type="submit">
+                                    Login
+                                </ion-button>
+                                <p class="ion-text-center">OR</p>
+                                <ion-button expand="full" fill="clear" color="light" type="button" (click)="signup()">
+                                    DON'T
+                                    HAVE
+                                    AN
+                                    ACCOUNT? SIGN UP
+                                </ion-button>
+                            </form>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

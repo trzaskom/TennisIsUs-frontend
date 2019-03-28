@@ -2,6 +2,14 @@ ion-content.background{
   --background: url(../../assets/Miami.jpg) 0 0/100% 100% no-repeat;
 }
 
+ion-grid {
+  height: 100%;
+  ion-row {
+    height: 100%;
+    align-items: center;
+  }
+}
+
 ion-card {
   box-shadow: none;
   background: rgba(0, 0, 0, 0.5);
