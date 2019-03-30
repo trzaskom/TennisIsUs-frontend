@@ -3,9 +3,11 @@ import {AuthService} from '../auth/auth.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {GeolocationService} from '../../client/api/geolocation/geolocation.service';
 import {SearchService} from '../../client/api/search/search.service';
+// @ts-ignore
 import {UserSearchDTO} from '../../client/model/UserSearchDTO';
 import {User} from '../../client/model/User';
 import {Observable} from 'rxjs/Rx';
+import {MessagesService} from '../messages/messages.service';
 
 declare var google;
 let map: any;
@@ -37,7 +39,8 @@ export class HomePage {
     maxRange: any;
 
     constructor(private readonly authService: AuthService,
-                jwtHelper: JwtHelperService, private geolocationService: GeolocationService, public searchService: SearchService) {
+                jwtHelper: JwtHelperService, private geolocationService: GeolocationService, public searchService: SearchService,
+                public messagesService: MessagesService) {
 
         this.authService.authUserObservable.subscribe(jwt => {
             if (jwt) {
@@ -51,10 +54,10 @@ export class HomePage {
                 this.loggedUsersDetails = this.authService.whoAmI();
             }
         );
-        /*        this.updateLocation();
-                Observable.interval(5 * 60 * 1000).subscribe(() => {
-                    this.updateLocation();
-                });*/
+        this.updateLocation();
+        Observable.interval(5 * 60 * 1000).subscribe(() => {
+            this.updateLocation();
+        });
         this.minRating = this.initialMin / 10;
         this.maxRating = this.initialMax / 10;
     }
@@ -76,25 +79,23 @@ export class HomePage {
             bounds.extend(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
             bounds.extend(new google.maps.LatLng(this.detailedUser.searchedLatitude, this.detailedUser.searchedLongitude));
 
-            directionsService = new google.maps.DirectionsService;
-            directionsDisplay = new google.maps.DirectionsRenderer({
-                suppressMarkers: true
-            });
-            directionsDisplay.setMap(map);
-            directionsService.route({
-                origin: {lat: location.coords.latitude, lng: location.coords.longitude},
-                destination: {lat: this.detailedUser.searchedLatitude, lng: this.detailedUser.searchedLongitude},
-                travelMode: 'DRIVING'
-            }, (response, status) => {
-                if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                }
-            });
-
+            /*            directionsService = new google.maps.DirectionsService;
+                        directionsDisplay = new google.maps.DirectionsRenderer({
+                            suppressMarkers: true
+                        });
+                        directionsDisplay.setMap(map);
+                        directionsService.route({
+                            origin: {lat: location.coords.latitude, lng: location.coords.longitude},
+                            destination: {lat: this.detailedUser.searchedLatitude, lng: this.detailedUser.searchedLongitude},
+                            travelMode: 'DRIVING'
+                        }, (response, status) => {
+                            if (status === 'OK') {
+                                directionsDisplay.setDirections(response);
+                            }
+                        });*/
             this.mapElement.nativeElement.hidden = true;
         });
     }
-
 
     addMarker(latitude, longitude, content, iconURL) {
 
@@ -150,6 +151,7 @@ export class HomePage {
 
     segmentChanged(ev: any) {
         this.detailsSwitch = ev.detail.value;
+        console.log(this.detailsSwitch);
         if (this.detailsSwitch === 'map') {
             this.mapElement.nativeElement.hidden = false;
             map.fitBounds(bounds);
@@ -163,4 +165,7 @@ export class HomePage {
         this.searchDetails = false;
     }
 
+    addToFriends() {
+        this.messagesService.addToFriends(this.detailedUser);
+    }
 }
