@@ -11,7 +11,8 @@ const routes: Routes = [
     {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule', canActivate: [AuthGuard]},
     {path: 'signup', loadChildren: './signup/signup.module#SignupPageModule'},
     {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
-  { path: 'rating', loadChildren: './rating/rating.module#RatingPageModule', canActivate: [AuthGuard]}
+    {path: 'rating', loadChildren: './rating/rating.module#RatingPageModule', canActivate: [AuthGuard]},
+    {path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule', canActivate: [AuthGuard]}
 ];
 
 @NgModule({
