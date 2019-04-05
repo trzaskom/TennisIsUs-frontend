@@ -54,10 +54,8 @@ export class HomePage {
                 this.loggedUsersDetails = this.authService.whoAmI();
             }
         );
-        this.updateLocation();
-        Observable.interval(5 * 60 * 1000).subscribe(() => {
-            this.updateLocation();
-        });
+        navigator.geolocation.watchPosition(changedLocation => this.geolocationService.updateLocation(changedLocation));
+
         this.minRating = this.initialMin / 10;
         this.maxRating = this.initialMax / 10;
     }
@@ -121,13 +119,6 @@ export class HomePage {
             infoWindow.open(map, this);
         });
     }
-
-    updateLocation() {
-        navigator.geolocation.getCurrentPosition((location) => {
-            this.geolocationService.updateLocation(location);
-        });
-    }
-
 
     setDualBadge(search_rating) {
         this.minRating = search_rating.lower / 10;
