@@ -41,20 +41,16 @@ export class AuthService {
 
             return new Promise((resolve, _) => {
 
-                this.httpClient.get(`${environment.serverURL}/authenticate`)
-                    .subscribe(() => {
-                            this.authUser.next(jwt);
-                            resolve(true);
-                        },
-                        err => {
-                            this.logout();
-                            resolve(false);
-                        });
-            });
-
-            // OR
-            // this.authUser.next(jwt);
-            // Promise.resolve(true);
+            this.httpClient.get(`${environment.serverURL}/authenticate`)
+                .subscribe(() => {
+                        this.authUser.next(jwt);
+                        resolve(true);
+                    },
+                    err => {
+                        this.logout();
+                        resolve(false);
+                    });
+        });
         } else {
             this.logout();
             return Promise.resolve(false);
