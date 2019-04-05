@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {GoogleMaps, GoogleMap} from '@ionic-native/google-maps';
 import {NavController, Platform} from '@ionic/angular';
 
+/*
 declare var google;
 let map: any;
 let infoWindow: any;
@@ -11,19 +12,20 @@ const options = {
     timeout: 5000,
     maximumAge: 0
 };
+*/
 
 @Component({
     selector: 'app-courts',
     templateUrl: './courts.page.html',
     styleUrls: ['./courts.page.scss'],
 })
-export class CourtsPage implements AfterViewInit {
+export class CourtsPage {
     @ViewChild('map') mapElement: ElementRef;
 
     constructor() {
     }
 
-    ngAfterViewInit() {
+   /* ngAfterViewInit() {
         this.initMap();
     }
 
@@ -52,7 +54,7 @@ export class CourtsPage implements AfterViewInit {
             infoWindow.setContent('test');
             infoWindow.open(map, this);
         });
-    }
+    }*/
 
     /*            infoWindow = new google.maps.InfoWindow();
                 const service = new google.maps.places.PlacesService(map);
