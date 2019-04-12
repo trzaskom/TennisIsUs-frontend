@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button text="" icon="arrow-round-back" defaultHref="tabs/(messages:messages)"></ion-back-button></ion-buttons>
+    <ion-title>{{privateChatFriend.name}} {{privateChatFriend.surname}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #IonContent fullscreen="true">
+    <ion-list>
+        <div *ngFor="let message of messages; let i = index; ">
+            <ion-row *ngIf="message.fromId == privateChatFriend.id">
+                <ion-col class="right" no-padding [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].fromId != message.fromId)|| !messages[i+1])}">
+                    <div class="imageAvatarRight">
+                        <div class="imageAvatarBottom">
+                            <ion-avatar class="avatar" [ngClass]="(messages[i+1] && messages[i+1].fromId == message.fromId)?'hidden':''">
+                                <ion-img src="../../../assets/icon/federer.jpg"></ion-img>
+                            </ion-avatar>
+                        </div>
+                        <ion-label color="light">
+                            <div class="chatDiv" [ngClass]="{'sharper':((messages[i+1] && messages[i+1].fromId == message.fromId) &&
+              (messages[i-1] && messages[i-1].fromId == message.fromId)),
+              'sharper-top':(messages[i-1] && messages[i-1].fromId == message.fromId),
+              'sharper-bottom':(messages[i+1] && messages[i+1].fromId == message.fromId)}">
+                                <p text-wrap padding>{{message.message}}
+                                </p>
+                                <div class="corner-parent-right">
+                                    <div class="corner-child-right">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-label>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="message.fromId == loggedUsersDetails.id">
+                <ion-col class="left" no-padding [ngClass]="{'clubbed':((messages[i+1] && messages[i+1].fromId != message.fromId)|| !messages[i+1])}">
+                    <div class="imageAvatarLeft">
+                        <ion-label color="light">
+                            <div class="chatDiv" [ngClass]="{'sharper':((messages[i+1] && messages[i+1].fromId == message.fromId) &&
+              (messages[i-1] && messages[i-1].fromId == message.fromId)),
+              'sharper-top':(messages[i-1] && messages[i-1].fromId == message.fromId),
+              'sharper-bottom':(messages[i+1] && messages[i+1].fromId == message.fromId)}">
+                                <p text-wrap padding>{{message.message}}</p>
+                                <div class="corner-parent-left">
+                                    <div class="corner-child-left">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-label>
+                        <div class="imageAvatarBottom">
+                            <ion-avatar class="avatar" [ngClass]="(messages[i+1] && messages[i+1].fromId == message.fromId)?'hidden':''">
+                                <ion-img src="../../../assets/Miami.jpg"></ion-img>
+                            </ion-avatar>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="((messages[i+1] && messages[i+1].fromId != message.fromId)|| !messages[i+1])">
+                <ion-col>
+                    <ion-text>{{message.time}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="secondary" [disabled]="chatMessage==''" (click)="sendMessageUsingSocket()">
+            <ion-icon name="send" expand="icon-only"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>
+
+<ion-footer translucent>
+    <ion-item>
+        <ion-input class="input-box" type="text" placeholder="Write a message..." [(ngModel)]="chatMessage" (keypress)="scrollDown()"></ion-input>
+    </ion-item>
+</ion-footer>
