@@ -1,31 +1,14 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>messages</ion-title>
+        <ion-title>Wiadomości</ion-title>
     </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngIf="privateChatFlag; then chat else friendsList"></div>
-    <ng-template #friendsList>
-        <ion-list *ngFor="let friend of friends" (click)="privateChat(friend)">
-            <ion-list-header>{{friend.name}} {{friend.username}}</ion-list-header>
-            <ion-item>
-                <ion-label>New message!</ion-label>
-            </ion-item>
-        </ion-list>
-    </ng-template>
-    <ng-template #chat>
-        <form #form="ngForm" (ngSubmit)="sendMessageUsingSocket(form.value)" novalidate>
-            <ion-input type="text" name="message" placeholder="Input your message" ngModel required
-                       #message="ngModel"></ion-input>
-            <ion-button type="submit" [disabled]="!form.valid">Send</ion-button>
-        </form>
-        <ion-list *ngFor="let message of messages">
-            <ion-list-header>From: {{message.fromId}}, To: {{message.toId}}</ion-list-header>
-            <ion-item>
-                <ion-label>{{message.message.message}}</ion-label>
-            </ion-item>
-        </ion-list>
-    </ng-template>
+    <ion-list *ngFor="let friend of friends" (click)="privateChat(friend)">
+        <ion-item>
+            <ion-list-header>{{friend.name}} {{friend.surname}}</ion-list-header>
+        </ion-item>
+    </ion-list>
 </ion-content>
