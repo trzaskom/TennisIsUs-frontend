@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 // @ts-ignore
 import {UserSearchDTO} from '../../model/UserSearchDTO';
+import {User} from '../../model/User';
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +15,15 @@ export class SearchService {
     constructor(public http: HttpClient) {
     }
 
-    getSearchedPlayers(minRating: string, maxRating: string, maxRange: string) {
+    getSearchedPlayers(maxRange: string, minRating: string, maxRating: string, minAge: string, maxAge: string, gender: string) {
 
-        const params = new HttpParams().set('minRating', minRating).set('maxRating', maxRating).set('maxRange', maxRange);
+        const params = new HttpParams().set('maxRange', maxRange).set('minRating', minRating).set('maxRating', maxRating)
+            .set('minAge', minAge).set('maxAge', maxAge).set('gender', gender);
 
         return this.http.get(`${environment.serverURL}/search`, {params: params}).subscribe
         (
             response => {
                 this.searchedPlayers = <UserSearchDTO[]>response;
-                console.log(this.searchedPlayers);
             }
         );
     }
