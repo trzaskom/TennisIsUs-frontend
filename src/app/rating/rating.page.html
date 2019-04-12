@@ -1,278 +1,273 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Rating</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Ocena umiejętności</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-header><strong>Select the best suiting description of your skill level in each element of game</strong></ion-header>
-  <br>
-  <ion-radio-group sortorder="2"  [(ngModel)]="forehand">
+    <ion-header><strong>Uzupełnij ankietę w celu wyliczenia wskaźnika twoich umiejętności gry w tenisa</strong>
+    </ion-header>
+    <br>
+        <ion-radio-group sortorder="2" [(ngModel)]="forehand">
 
-    <ion-list-header color="primary">Forehand</ion-list-header>
+            <ion-list-header color="primary">Forehand</ion-list-header>
 
-    <ion-item>
-      <ion-label >Has difficulty hitting FH shots</ion-label>
-      <ion-radio checked="true" value=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Ma trudności w uderzaniu FH</ion-label>
+                <ion-radio checked="true" value=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits inconsistent weak FH shots</ion-label>
-      <ion-radio value=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza nieregularne, słabe FH</ion-label>
+                <ion-radio value=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits FH shots with little directional control</ion-label>
-      <ion-radio value=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza FH ze słabą kontrolą kierunków</ion-label>
+                <ion-radio value=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a short rally using FH and BH shots</ion-label>
-      <ion-radio value=5></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Utrzymuje krótkie wymiany odbijając FH oraz BH</ion-label>
+                <ion-radio value=5></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a rally with directional control</ion-label>
-      <ion-radio value=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Urzymuje wymiany kontrolując kierunki</ion-label>
+                <ion-radio value=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a rally with consistency and depth</ion-label>
-      <ion-radio value=7></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Utrzymuje wymiany uderzając powtarzalnie i głęboko</ion-label>
+                <ion-radio value=7></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains an extended rally</ion-label>
-      <ion-radio value=8></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Utrzymuje długie wymiany</ion-label>
+                <ion-radio value=8></ion-radio>
+            </ion-item>
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="backhand">
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="backhand">
 
-    <ion-list-header color="primary">Backhand</ion-list-header>
+            <ion-list-header color="primary">Backhand</ion-list-header>
 
-    <ion-item>
-      <ion-label>Has difficulty hitting FH shots</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Ma trudności w uderzaniu BH</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits inconsistent weak FH shots</ion-label>
-      <ion-radio [value]=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza nieregularne, słabe BH</ion-label>
+                <ion-radio [value]=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits FH shots with little directional control</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza FH ze słabą kontrolą kierunków</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a short rally using FH and BH shots</ion-label>
-      <ion-radio [value]=5></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza BH kontrolując kierunki ale bez głębokości</ion-label>
+                <ion-radio [value]=5></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a rally with directional control</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Odbiera trudne uderzenia defensywnie</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a rally with consistency and depth</ion-label>
-      <ion-radio [value]=7></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Ma problemy z wysokimi i mocnymi uderzeniami</ion-label>
+                <ion-radio [value]=7></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains an extended rally</ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza BH i FH z kontrolą kierunku, tempa i głębokości</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="movement">
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="movement">
 
-    <ion-list-header color="primary">Movement</ion-list-header>
+            <ion-list-header color="primary">Movement</ion-list-header>
 
-    <ion-item>
-      <ion-label>Stationary position; does not move to ball to hit shots</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Pozycja stacjonarna, nie podbiega do piłki</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Moves only 1-2 steps toward ball to hit shots</ion-label>
-      <ion-radio [value]=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Podbiega 1 - 2 kroki do piłki</ion-label>
+                <ion-radio [value]=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Moves toward ball; but court coverage is poor</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Porusza się w kierunki piłki, ale słabo pokrywa kort</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Movement allows sufficient court coverage of most shots</ion-label>
-      <ion-radio [value]=5></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Pokrywa wystarczająco kort do wykonania większości uderzeń</ion-label>
+                <ion-radio [value]=5></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Exceptional court coverage</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Bardzo dobrze pokrywa kort</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Exceptional court coverage and hits defensive lobs and inconsistent overheads</ion-label>
-      <ion-radio [value]=7></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Bardzo dobrze pokrywa kort, zagrywa defensywne loby i nieregularne smecze</ion-label>
+                <ion-radio [value]=7></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Exceptional court coverage and hits offensive lobs and consistent overheads</ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Bardzo dobrze pokrywa kort, zagrywa defensywne loby i powtarzalne smecze</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="firstServe">
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="firstServe">
 
-    <ion-list-header color="primary">First serve</ion-list-header>
+            <ion-list-header color="primary">Pierwszy serwis</ion-list-header>
 
-    <ion-item>
-      <ion-label>1st serve is weak</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Pierwszy serwis jest słaby</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>1st serve faults are common</ion-label>
-      <ion-radio [value]=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Częste podwójne błędy przy pierwszym serwisie</ion-label>
+                <ion-radio [value]=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits 1st serves in at a slower pace</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Trafia pierwszy serwis uderzając wolniej</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits 1st serves with pace</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Trafia pierwszy serwis uderzając normalną siłą</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Sustains a rally with directional control</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Trafia pierwszy serwis i kontroluje kierunek uderzając normalną siłą</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits 1st serves with pace and control</ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="secondServe">
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="secondServe">
+            <ion-list-header color="primary">Drugi serwis</ion-list-header>
 
-    <ion-list-header color="primary">Second serve</ion-list-header>
+            <ion-item>
+                <ion-label>Częste podwójne błędy</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Double faults are common</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Trafia ale uderza bardzo lekko</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Pushes 2nd serves</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza drugie serwisy z kontrolą kierunku</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits second serves with control</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza drugie serwisy z kontrolą kierunku i głębokości</ion-label>
+                <ion-radio [value]=7></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits second serves with control and depth</ion-label>
-      <ion-radio [value]=7></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza drugie serwisy z kontrolą rotacji, kierunku i głębokości</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits 2nd serves with spin, control, and depth </ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="returnOfServe">
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="returnOfServe">
+            <ion-list-header color="primary">Odbiór serwisu</ion-list-header>
 
-    <ion-list-header color="primary">Return of serve</ion-list-header>
+            <ion-item>
+                <ion-label>Ma problemy z odbiorem</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Has difficulty returning serve</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Odbiera nieregularnie</ion-label>
+                <ion-radio [value]=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Returns serve occasionally</ion-label>
-      <ion-radio [value]=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Odbiera drugi serwis regularnie</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Returns 2nd serve consistently</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Odbiera pierwszy serwis nieregularnie i drugi regularnie</ion-label>
+                <ion-radio [value]=5></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Returns some 1st serves, returns 2nd serves consistently</ion-label>
-      <ion-radio [value]=5></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Odbiera pierwszy i drugi serwis regularnie</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Returns 1st and 2nd serves consistently</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Agresywnie odbiera drugi serwis i słabo pierwszy serwis</ion-label>
+                <ion-radio [value]=7></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Aggressive return of 2nd serve; weak return of 1st serve</ion-label>
-      <ion-radio [value]=7></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Agresywnie odbiera pierwszy i drugi serwis</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Aggressive return of 1st and 2nd serves</ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
+        </ion-radio-group>
+        <br>
+        <ion-radio-group [(ngModel)]="volleys">
 
-  </ion-radio-group>
-  <br>
-  <ion-radio-group [(ngModel)]="volleys">
+            <ion-list-header color="primary">Woleje</ion-list-header>
 
-    <ion-list-header color="primary">Volleys</ion-list-header>
+            <ion-item>
+                <ion-label>Nie gra przy siatce</ion-label>
+                <ion-radio [value]=2></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Avoids net</ion-label>
-      <ion-radio [value]=2></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Nie potrafi uderzać wolejów; Unika gry przy siatce</ion-label>
+                <ion-radio [value]=3></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Does not hit volleys; avoids net </ion-label>
-      <ion-radio [value]=3></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza niereguralne woleje; Unika gry przy siatce</ion-label>
+                <ion-radio [value]=4></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits inconsistent volleys; avoids net</ion-label>
-      <ion-radio [value]=4></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza regularne woleje forehandowe i nieregularne backhandowe</ion-label>
+                <ion-radio [value]=5></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits consistent FH volleys; BH volley is inconsistent</ion-label>
-      <ion-radio [value]=5></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza agresywnie woleje forehandowe i defensywne backhandowe</ion-label>
+                <ion-radio [value]=6></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits aggressive FH volleys; hits defensive BH volleys</ion-label>
-      <ion-radio [value]=6></ion-radio>
-    </ion-item>
+            <ion-item>
+                <ion-label>Uderza agresywnie woleje forehandowe i backhandowe</ion-label>
+                <ion-radio [value]=8></ion-radio>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Hits aggressive FH and BH volleys</ion-label>
-      <ion-radio [value]=8></ion-radio>
-    </ion-item>
-
-  </ion-radio-group>
-  <ion-button (click)="updateRating()">Submit</ion-button>
-
+        </ion-radio-group>
+        <ion-button expand="block" (click)="updateRating()">Oblicz</ion-button>
 </ion-content>
