@@ -6,6 +6,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
 import {User} from '../../client/model/User';
+import {SocketService} from '../../client/socket/socket.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
 
     constructor(private readonly httpClient: HttpClient,
                 private readonly navCtrl: NavController,
-                private readonly jwtHelper: JwtHelperService) {
+                private readonly jwtHelper: JwtHelperService,
+                private readonly socketService: SocketService) {
     }
 
     public whoAmI(): User {
@@ -63,6 +65,7 @@ export class AuthService {
     }
 
     logout() {
+        this.socketService.disconnect();
         localStorage.removeItem(this.jwtTokenName);
         this.authUser.next(null);
         this.navCtrl.navigateRoot('login', true, {replaceUrl: true, skipLocationChange: true});
