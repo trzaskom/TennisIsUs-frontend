@@ -1,47 +1,84 @@
 <ion-header>
-    <ion-toolbar></ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Wyszukiwanie</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content padding>
     <div *ngIf="searchListView; then foundUsers else searchPanel"></div>
     <ng-template #searchPanel>
-        <ion-list>
-
-            <ion-item>
-                <ion-label>Rating</ion-label>
+        <ion-card>
+            <ion-list>
+                <ion-grid>
+                    <ion-label class="search-label">Poziom gry</ion-label>
+                </ion-grid>
+                <ion-item>
+                    <ion-badge color="primary">{{minRating}}</ion-badge>
+                    <ion-range dualKnobs="true" [min]="10" [max]="80" step="1"
+                               [(ngModel)]="searchRating"
+                               (ionChange)="setDualBadgeRating(searchRating)">
+                    </ion-range>
+                    <ion-badge color="primary">{{maxRating}}</ion-badge>
+                </ion-item>
                 <br>
-                <ion-badge color="primary">{{this.minRating}}</ion-badge>
-                <ion-range dualKnobs="true" [min]="initialMin" [max]="initialMax" step="1" [(ngModel)]="searchRating"
-                           (ionChange)="setDualBadge(searchRating)">
-                </ion-range>
-                <ion-badge color="primary">{{this.maxRating}}</ion-badge>
-            </ion-item>
-
-            <ion-item>
-                <ion-label>Distance limit</ion-label>
+                <ion-grid>
+                    <ion-label class="search-label">Promień poszukiwań [km]</ion-label>
+                </ion-grid>
+                <ion-item>
+                    <ion-range [min]="1" [max]="100" pin="true" step="1" [(ngModel)]="maxRange"></ion-range>
+                </ion-item>
                 <br>
-                <ion-input type="number" placeholder="Input distance in meters" [(ngModel)]="maxRange" color="primary">
-                </ion-input>
-            </ion-item>
+                <ion-grid>
+                    <ion-label class="search-label">Wiek</ion-label>
+                </ion-grid>
+                <ion-item>
+                    <ion-badge color="primary">{{minAge}}</ion-badge>
+                    <ion-range dualKnobs="true" [min]="16" [max]="100" step="1"
+                               [(ngModel)]="searchAge"
+                               (ionChange)="setDualBadgeAge(searchAge)">
+                    </ion-range>
+                    <ion-badge color="primary">{{maxAge}}</ion-badge>
+                </ion-item>
+                <br>
+                <ion-item>
+                    <ion-label style="color: #737373">Płeć</ion-label>
+                    <ion-select [(ngModel)]="searchGender" interface="popover" placeholder="Dotknij" cancel-text="Anuluj"
+                                style="color: #e8900c">
+                        <ion-select-option value="1">Kobieta</ion-select-option>
+                        <ion-select-option value="2">Mężczyzna</ion-select-option>
+                        <ion-select-option value="3">Dowolna</ion-select-option>
+                    </ion-select>
+                </ion-item>
 
-        </ion-list>
+            </ion-list>
+            <ion-grid id="button-grid">
+                <ion-row>
+                    <ion-col>
+                        <ion-button expand="block" class="round" (click)="searchForPlayers()">
+                            <ion-ripple-effect></ion-ripple-effect>
+                            Szukaj
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card>
 
-        <ion-button (click)="searchForPlayers()">
-            <ion-ripple-effect></ion-ripple-effect>
-            Search
-        </ion-button>
+
     </ng-template>
 
     <ng-template #foundUsers>
         <div *ngIf="searchDetails; then playerDetails else searchListResult"></div>
         <ng-template #searchListResult>
-            <ion-list-header>Found players</ion-list-header>
-            <ion-card (click)="foundPlayerDetails(user)" *ngFor="let user of searchService.searchedPlayers">
-                <ion-card-header>{{user.name}} {{user.surname}}</ion-card-header>
-                <ion-card-title>Distance: {{user.distanceFromCurrentUser}}</ion-card-title>
-                <ion-card-subtitle>Rating: {{user.rating}}</ion-card-subtitle>
-                <ion-card-content>test test test test</ion-card-content>
+            <ion-card style="background-color:rgba(255, 246, 182, 0.51)" (click)="foundPlayerDetails(user)"
+                      *ngFor="let user of searchService.searchedPlayers">
+                <ion-card-header>
+                    <ion-label style="font-size: large; font-weight: bold">{{user.name}} {{user.surname}} </ion-label>
+                    <ion-badge style="float: right  " color="danger">{{user.distanceFromCurrentUser}} km</ion-badge>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-label style="font-size: large; font-weight: bold">Poziom: {{user.rating}}</ion-label>
+                </ion-card-content>
             </ion-card>
-            <ion-button (click)="backToSearchPanel()">Search again</ion-button>
+            <ion-button (click)="backToSearchPanel()">Szukaj ponownie</ion-button>
         </ng-template>
         <ng-template #playerDetails>
             <ion-button (click)="goBackToResultList()">
@@ -49,15 +86,16 @@
             </ion-button>
             <ion-segment (ionChange)="segmentChanged($event)">
                 <ion-segment-button value="details">
-                    <ion-label>Details</ion-label>
+                    <ion-label>Szczegóły</ion-label>
                 </ion-segment-button>
                 <ion-segment-button value="map">
-                    <ion-label>Map</ion-label>
+                    <ion-label>Mapa</ion-label>
                 </ion-segment-button>
             </ion-segment>
             <div #map id="map" style="height:100%"></div>
             <div [ngSwitch]="detailsSwitch">
-                <ion-card *ngSwitchCase="'details'" ngSelected="selected">
+                <ion-card style="background-color:rgba(255, 246, 182, 0.51);" *ngSwitchCase="'details'"
+                          ngSelected="selected">
 
                     <img style="height:60%;" src="assets/icon/federer.jpg"/>
 
@@ -73,7 +111,7 @@
                         Rating
                         <ion-badge style="position: relative; left: 158px;">{{detailedUser.rating}}</ion-badge>
                     </ion-item>
-                    <ion-button (click)="addToFriends()">Invite</ion-button>
+                    <ion-button expand="block" (click)="addToFriends()">Zaproś do znajomych</ion-button>
                 </ion-card>
             </div>
         </ng-template>
