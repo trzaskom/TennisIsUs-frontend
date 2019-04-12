@@ -4,6 +4,7 @@ import {LoadingController, NavController, ToastController} from '@ionic/angular'
 import {AuthService} from '../auth/auth.service';
 import {finalize} from 'rxjs/operators';
 import {GeolocationService} from '../../client/api/geolocation/geolocation.service';
+import {SocketService} from '../../client/socket/socket.service';
 
 @Component({
     selector: 'app-signup',
@@ -19,14 +20,16 @@ export class SignupPage {
                 private readonly authService: AuthService,
                 private readonly loadingCtrl: LoadingController,
                 private readonly toastCtrl: ToastController,
-                private readonly geolocationService: GeolocationService) {
+                private readonly geolocationService: GeolocationService,
+                private readonly socketService: SocketService) {
     }
 
     async signup(value: any) {
         value.rating = 0;
+        value.gender = +value.gender;
         const loading = await this.loadingCtrl.create({
             spinner: 'bubbles',
-            message: 'Signing up ...'
+            message: 'Rejestrowanie ...'
         });
 
         await loading.present();
@@ -40,7 +43,7 @@ export class SignupPage {
     }
 
     async handleError(error: any) {
-        const message = 'Unexpected error occurred';
+        const message = 'Wystąpił niespodziewany błąd';
 
         const toast = await this.toastCtrl.create({
             message,
@@ -54,17 +57,17 @@ export class SignupPage {
     private async showSuccesToast(jwt) {
         if (jwt !== 'EXISTS') {
             const toast = await this.toastCtrl.create({
-                message: 'Sign up successful',
+                message: 'Rejestracja pomyślna',
                 duration: 3000,
                 position: 'bottom'
             });
 
             await toast.present();
-            this.postInitialLocation();
+            this.initiateServices();
             this.navCtrl.navigateRoot(['rating'], true, {replaceUrl: true});
         } else {
             const toast = await this.toastCtrl.create({
-                message: 'Username already registered',
+                message: 'Nazwa użytkownika już zajęta',
                 duration: 3000,
                 position: 'bottom'
             });
@@ -73,6 +76,11 @@ export class SignupPage {
 
             this.usernameModel.control.setErrors({'usernameTaken': true});
         }
+    }
+
+    initiateServices() {
+        this.postInitialLocation();
+        this.socketService.initializeWebSocketConnection();
     }
 
     postInitialLocation() {

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {LoadingController, NavController, ToastController} from '@ionic/angular';
 import {AuthService} from '../auth/auth.service';
 import {finalize} from 'rxjs/operators';
+import {GeolocationService} from '../../client/api/geolocation/geolocation.service';
+import {SocketService} from '../../client/socket/socket.service';
 
 @Component({
     selector: 'app-login',
@@ -13,7 +15,8 @@ export class LoginPage {
     constructor(private readonly navCtrl: NavController,
                 private readonly loadingCtrl: LoadingController,
                 private readonly authService: AuthService,
-                private readonly toastCtrl: ToastController) {
+                private readonly toastCtrl: ToastController,
+                private readonly socketService: SocketService) {
     }
 
     signup() {
@@ -23,7 +26,7 @@ export class LoginPage {
     async login(value: any) {
         const loading = await this.loadingCtrl.create({
             spinner: 'bubbles',
-            message: 'Logging in ...'
+            message: 'Logowanie ...'
         });
 
         loading.present();
@@ -34,6 +37,7 @@ export class LoginPage {
             .subscribe(
                 _ => {
                     this.navCtrl.navigateRoot([''], true, {replaceUrl: true});
+                    this.socketService.initializeWebSocketConnection();
                 },
                 err => this.handleError(err));
     }
@@ -41,9 +45,9 @@ export class LoginPage {
     async handleError(error: any) {
         let message: string;
         if (error.status && error.status === 401) {
-            message = 'Login failed';
+            message = 'Logowanie nie powiodło się';
         } else {
-            message = `Unexpected error: ${error.statusText}`;
+            message = `Wystąpienie niespodziewanego błędu: ${error.statusText}`;
         }
 
         const toast = await this.toastCtrl.create({
