@@ -1,12 +1,9 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Korty</ion-title>
+        <ion-title>Pobliskie korty</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-<!--    <div #map id="map" style="height:100%"></div>-->
-
-    <iframe src="https://www.google.com/maps/embed/v1/search?q=tennis%20court&key=AIzaSyA_QJ_mWom7l1gCpsIHwnGm4hKnIa5kAXg"
-            style="height:100%; width:100%;"></iframe>
+    <iframe [src]="src" style="height:100%; width:100%;"></iframe>
 </ion-content>
