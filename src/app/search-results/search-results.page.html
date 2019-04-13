@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button text="" icon="arrow-round-back" defaultHref="tabs/(search-form:search-form)"></ion-back-button></ion-buttons>
+    <ion-title>Znalezieni grający</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card  (click)="foundPlayerDetails(user)"
+            *ngFor="let user of searchedPlayers">
+    <ion-card-header>
+      <ion-label style="font-size: large; font-weight: bold">{{user.name}} {{user.surname}} </ion-label>
+      <ion-badge style="float: right  " color="danger">{{user.distanceFromCurrentUser}} km</ion-badge>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label style="font-size: large; font-weight: bold">Poziom: {{user.rating}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

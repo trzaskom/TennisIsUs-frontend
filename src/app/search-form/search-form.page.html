@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Wyszukiwanie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-list>
+      <ion-grid>
+        <ion-label class="search-label">Poziom gry</ion-label>
+      </ion-grid>
+      <ion-item>
+        <ion-badge color="primary">{{minRating}}</ion-badge>
+        <ion-range dualKnobs="true" [min]="10" [max]="80" step="1"
+                   [(ngModel)]="searchRating"
+                   (ionChange)="setDualBadgeRating(searchRating)">
+        </ion-range>
+        <ion-badge color="primary">{{maxRating}}</ion-badge>
+      </ion-item>
+      <br>
+      <ion-grid>
+        <ion-label class="search-label">Promień poszukiwań [km]</ion-label>
+      </ion-grid>
+      <ion-item>
+        <ion-range [min]="1" [max]="100" pin="true" step="1" [(ngModel)]="maxRange"></ion-range>
+      </ion-item>
+      <br>
+      <ion-grid>
+        <ion-label class="search-label">Wiek</ion-label>
+      </ion-grid>
+      <ion-item>
+        <ion-badge color="primary">{{minAge}}</ion-badge>
+        <ion-range dualKnobs="true" [min]="16" [max]="100" step="1"
+                   [(ngModel)]="searchAge"
+                   (ionChange)="setDualBadgeAge(searchAge)">
+        </ion-range>
+        <ion-badge color="primary">{{maxAge}}</ion-badge>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label style="color: #737373">Płeć</ion-label>
+        <ion-select [(ngModel)]="searchGender" interface="popover" placeholder="Dotknij" cancel-text="Anuluj"
+                    style="color: #e8900c">
+          <ion-select-option value="1">Kobieta</ion-select-option>
+          <ion-select-option value="2">Mężczyzna</ion-select-option>
+          <ion-select-option value="3">Dowolna</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+    <ion-grid id="button-grid">
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" class="round" (click)="searchForPlayers()">
+            <ion-ripple-effect></ion-ripple-effect>
+            Szukaj
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

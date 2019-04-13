@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="arrow-round-back" defaultHref="search-results"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{detailedPlayer.name}} {{detailedPlayer.surname}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-segment (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="details">
+            <ion-label>Szczegóły</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="map">
+            <ion-label>Mapa</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <div #map id="map" style="height:100%"></div>
+    <div [ngSwitch]="detailsSwitch">
+        <ion-card style="background-color:rgba(255, 246, 182, 0.51);" *ngSwitchCase="'details'"
+                  ngSelected="selected">
+
+            <img style="height:40%;" src="assets/icon/federer.jpg"/>
+
+            <ion-card-content>
+                <ion-card-title>{{detailedPlayer.name}} {{detailedPlayer.surname}}
+                    <ion-badge style="float: right" color="danger">{{detailedPlayer.distanceFromCurrentUser}}km
+                    </ion-badge>
+                </ion-card-title>
+
+            </ion-card-content>
+
+            <ion-item>
+                <ion-icon name='tennisball' item-start color="primary"></ion-icon>
+                <ion-label> Poziom</ion-label>
+                <ion-badge style="float: right" color="danger">{{detailedPlayer.rating}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon name='body' item-start color="primary"></ion-icon>
+                <ion-label> Wiek</ion-label>
+                <ion-badge style="float: right" color="danger">{{detailedPlayer.age}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon *ngIf="detailedPlayer.gender === 'kobieta'" name='female' item-start color="primary"></ion-icon>
+                <ion-icon *ngIf="detailedPlayer.gender === 'mężczyzna'" name='male' item-start color="primary"></ion-icon>
+                <ion-label> Płeć</ion-label>
+                <ion-badge style="float: right" color="danger">{{detailedPlayer.gender}}</ion-badge>
+            </ion-item>
+            <ion-button expand="block" (click)="addToFriends()">Zaproś do znajomych</ion-button>
+        </ion-card>
+    </div>
+</ion-content>
