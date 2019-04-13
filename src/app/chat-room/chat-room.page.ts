@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Message} from '../../../client/model/Message';
-import {User} from '../../../client/model/User';
-import {AuthService} from '../../auth/auth.service';
+import {Message} from '../../client/model/Message';
+import {User} from '../../client/model/User';
+import {AuthService} from '../auth/auth.service';
 import {Content} from '@ionic/angular';
-import {SocketService} from '../../../client/socket/socket.service';
+import {SocketService} from '../../client/socket/socket.service';
 
 @Component({
     selector: 'app-chat-room',
