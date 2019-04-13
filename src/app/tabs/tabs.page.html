@@ -1,7 +1,7 @@
 <ion-tabs>
 
-  <ion-tab tab="home">
-    <ion-router-outlet name="home"></ion-router-outlet>
+  <ion-tab tab="search-form">
+    <ion-router-outlet name="search-form"></ion-router-outlet>
   </ion-tab>
   <ion-tab tab="messages">
     <ion-router-outlet name="messages"></ion-router-outlet>
@@ -18,14 +18,14 @@
 
   <ion-tab-bar slot="bottom" style="background-color: rgba(255, 246, 182, 0.51)">
 
-    <ion-tab-button tab="home" href="/tabs/(home:home)">
+    <ion-tab-button tab="search-form" href="/tabs/(search-form:search-form)">
       <ion-icon name="search"></ion-icon>
       <ion-label>Szukaj</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="messages" href="/tabs/(messages:messages)">
-      <ion-icon name="text"></ion-icon>
-      <ion-label>Wiadomości</ion-label>
+      <ion-icon name="contacts"></ion-icon>
+      <ion-label>Znajomi</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="courts" href="/tabs/(courts:courts)">

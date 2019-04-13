@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
 import {TabsPage} from './tabs.page';
-import {HomePage} from '../home/home.page';
 import {CourtsPage} from '../courts/courts.page';
 import {MessagesPage} from '../messages/messages.page';
 import {WeatherPage} from '../weather/weather.page';
 import {ProfilePage} from '../profile/profile.page';
+import {SearchFormPage} from '../search-form/search-form.page';
 
 const routes: Routes = [
     {
@@ -15,13 +14,13 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/tabs/(home:home)',
+                redirectTo: '/tabs/(search-form:search-form)',
                 pathMatch: 'full',
             },
             {
-                path: 'home',
-                outlet: 'home',
-                component: HomePage
+                path: 'search-form',
+                outlet: 'search-form',
+                component: SearchFormPage
             },
             {
                 path: 'messages',
@@ -47,7 +46,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/tabs/(home:home)',
+        redirectTo: '/tabs/(search-form:search-form)',
         pathMatch: 'full'
     }
 ];
