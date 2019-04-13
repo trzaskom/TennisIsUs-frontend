@@ -31,7 +31,7 @@
                                         Pole wymagane
                                     </ion-label>
                                 </ion-item>
-                                <ion-button expand="block" fill="outline" shape="round" color="light" type="submit">
+                                <ion-button expand="block" fill="outline" shape="round" color="light" type="submit" [disabled]="!form.valid">
                                     Zaloguj
                                 </ion-button>
                                 <p class="ion-text-center">LUB</p>
