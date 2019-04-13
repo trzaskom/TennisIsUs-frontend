@@ -18,11 +18,11 @@ export class FriendsService {
     }
 
     addToFriends(friendId: number) {
-        return (this.http.post(`${environment.serverURL}/friends`, friendId)).subscribe(_ => {
+        return (this.http.post(`${environment.serverURL}/friends`, friendId)).pipe(tap(_ => {
             this.getUserFriends().subscribe(_ => {
                 this.newFriend.next();
             });
-        });
+        }));
     }
 
     getUserFriends() {

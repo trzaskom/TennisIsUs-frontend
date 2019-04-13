@@ -4,6 +4,7 @@ import {environment} from '../../../environments/environment';
 // @ts-ignore
 import {UserSearchDTO} from '../../model/UserSearchDTO';
 import {User} from '../../model/User';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,7 @@ import {User} from '../../model/User';
 export class SearchService {
 
     searchedPlayers: UserSearchDTO[];
+    detailedPlayer: UserSearchDTO;
 
     constructor(public http: HttpClient) {
     }
@@ -20,12 +22,12 @@ export class SearchService {
         const params = new HttpParams().set('maxRange', maxRange).set('minRating', minRating).set('maxRating', maxRating)
             .set('minAge', minAge).set('maxAge', maxAge).set('gender', gender);
 
-        return this.http.get(`${environment.serverURL}/search`, {params: params}).subscribe
-        (
+        return this.http.get(`${environment.serverURL}/search`, {params: params}).pipe(tap(
             response => {
                 this.searchedPlayers = <UserSearchDTO[]>response;
             }
-        );
+        ));
+
     }
 
 }
