@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Profile</ion-title>
+        <ion-title>Profil</ion-title>
         <ion-buttons slot="primary">
             <ion-button (click)="logout()">
                 <ion-icon name="exit" slot="icon-only"></ion-icon>
@@ -10,22 +10,30 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
-        <ion-list>
-            <ion-list-header>{{loggedUser?.name}} {{loggedUser?.surname}}</ion-list-header>
-            <ion-item>
-                <ion-label>Email:</ion-label>
-                {{loggedUser?.email}}</ion-item>
-            <ion-item>
-                <ion-label>Gender:</ion-label>
-                {{loggedUser?.gender}}</ion-item>
-            <ion-item>
-                <ion-label>Age:</ion-label>
-                {{loggedUser?.age}}</ion-item>
-            <ion-item>
-                <ion-label>Rating:</ion-label>
-                {{loggedUser?.rating}}</ion-item>
-            <ion-button (click)="updateRating()">Edit rating</ion-button>
-        </ion-list>
+    <ion-card style="background-color:rgba(255, 246, 182, 0.51);">
+
+        <img style="height:40%;" src="assets/icon/federer.jpg"/>
+
+        <ion-card-content>
+            <ion-card-title>{{loggedUser?.name}} {{loggedUser?.surname}}</ion-card-title>
+        </ion-card-content>
+
+        <ion-item>
+            <ion-icon name='tennisball' item-start color="primary"></ion-icon>
+            <ion-label> Poziom</ion-label>
+            <ion-badge style="float: right" color="danger">{{loggedUser?.rating}}</ion-badge>
+        </ion-item>
+        <ion-item>
+            <ion-icon name='body' item-start color="primary"></ion-icon>
+            <ion-label> Wiek</ion-label>
+            <ion-badge style="float: right" color="danger">{{loggedUser?.age}}</ion-badge>
+        </ion-item>
+        <ion-item>
+            <ion-icon *ngIf="loggedUser?.gender === 'kobieta'" name='female' item-start color="primary"></ion-icon>
+            <ion-icon *ngIf="loggedUser?.gender === 'mężczyzna'" name='male' item-start color="primary"></ion-icon>
+            <ion-label> Płeć</ion-label>
+            <ion-badge style="float: right" color="danger">{{loggedUser?.gender}}</ion-badge>
+        </ion-item>
+        <ion-button expand="block" (click)="updateRating()">Zaktualizuj poziom</ion-button>
     </ion-card>
 </ion-content>

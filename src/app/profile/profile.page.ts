@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 import {NavController} from '@ionic/angular';
-import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth/auth.service';
-import {environment} from '../../environments/environment';
+import {User} from '../../client/model/User';
 
 @Component({
     selector: 'app-profile',
@@ -12,16 +10,13 @@ import {environment} from '../../environments/environment';
 })
 export class ProfilePage {
 
-    loggedUser;
+    loggedUser: User;
 
     constructor(private readonly navCtrl: NavController, public authService: AuthService) {
-        this.getUserDetails();
-    }
-
-    getUserDetails() {
         this.authService.getCurrentUser().subscribe(() => {
-            this.loggedUser = this.authService.loggedUser;
-        });
+                this.loggedUser = this.authService.whoAmI();
+            }
+        );
     }
 
     updateRating() {
