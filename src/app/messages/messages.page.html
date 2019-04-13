@@ -1,14 +1,27 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Wiadomości</ion-title>
+        <ion-title>Znajomi</ion-title>
     </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
-    <ion-list *ngFor="let friend of friends" (click)="privateChat(friend)">
-        <ion-item>
-            <ion-list-header>{{friend.name}} {{friend.surname}}</ion-list-header>
+<ion-content>
+    <ion-list no-padding >
+        <ion-item *ngFor="let friend of friends" (click)="privateChat(friend)" lines="none">
+            <div class="borderBottomLine"></div>
+            <div class="listSection">
+                <div class="UserimgSection">
+                    <ion-avatar class="chatImage" slot="start">
+                        <ion-img src="../../../assets/icon/federer.jpg"></ion-img>
+                    </ion-avatar>
+                </div>
+                <div class="usernameSection" padding-start padding>
+                    <h5>
+                        {{friend.name}} {{friend.surname}}
+                    </h5>
+                    <!--<p class="descText" no-margin no-padding>{{chat.description}}</p>-->
+                </div>
+            </div>
         </ion-item>
     </ion-list>
 </ion-content>
