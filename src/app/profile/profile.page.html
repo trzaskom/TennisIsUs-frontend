@@ -12,7 +12,7 @@
 <ion-content padding>
     <ion-card style="background-color:rgba(255, 246, 182, 0.51);">
 
-        <img style="height:40%;" src="assets/icon/federer.jpg"/>
+        <img style="height:40%;" src="assets/no-image.jpg"/>
 
         <ion-card-content>
             <ion-card-title>{{loggedUser?.name}} {{loggedUser?.surname}}</ion-card-title>
@@ -34,6 +34,6 @@
             <ion-label> Płeć</ion-label>
             <ion-badge style="float: right" color="danger">{{loggedUser?.gender}}</ion-badge>
         </ion-item>
-        <ion-button expand="block" (click)="updateRating()">Zaktualizuj poziom</ion-button>
+            <ion-button expand="block" (click)="updateRating()">Edytuj</ion-button>
     </ion-card>
 </ion-content>
